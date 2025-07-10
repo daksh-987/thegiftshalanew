@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graceful Gifts - Premium Gift Shop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#DB2777',
+                        secondary: '#F9A8D4',
+                        accent: '#831843'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .product-card {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .rating-stars {
+            color: #F59E0B;
+        }
+        
+        .sale-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #EF4444;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                        url('https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d976fd2f-2b93-4f2b-aefe-b972a0900560.png') no-repeat center center;
+            background-size: cover;
+            height: 500px;
+        }
+        
+        .filter-btn {
+            transition: all 0.2s ease;
+        }
+        
+        .filter-btn:hover {
+            background-color: #F9A8D4;
+            color: #831843;
+        }
+        
+        .filter-btn.active {
+            background-color: #DB2777;
+            color: white;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/73077092-cebf-4e09-9c06-2271215e9437.png" alt="Graceful Gifts logo with pink gift box icon" class="h-10 mr-3">
+                    <span class="text-2xl font-bold text-primary">Graceful Gifts</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#shop" class="text-gray-700 hover:text-primary">Shop</a>
+                    <a href="#categories" class="text-gray-700 hover:text-primary">Categories</a>
+                    <a href="#deals" class="text-gray-700 hover:text-primary">Deals</a>
+                    <a href="#about" class="text-gray-700 hover:text-primary">About</a>
+                    <div class="relative">
+                        <input type="text" placeholder="Search for gifts..." class="border rounded-full py-1 px-4 focus:outline-none focus:ring-2 focus:ring-primary">
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="#" class="relative">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700 hover:text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                        </svg>
+                        <span class="absolute -top-2 -right-2 bg-primary text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
+                    </a>
+                    <button class="md:hidden text-gray-700 focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section - Shop Now Page -->
+    <section class="hero-section flex items-center justify-center text-center">
+        <div class="text-white px-4">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">The Perfect Gift for Every Occasion</h1>
+            <p class="text-xl mb-8">Beautifully curated gifts that bring joy and happiness</p>
+            <a href="#shop" class="bg-primary hover:bg-pink-700 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 inline-block">Shop Now</a>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section id="categories" class="py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Shop by Category</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="bg-gray-50 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition duration-300">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/5d9376d5-983c-4f07-9452-c99a8a99f163.png" alt="Birthday gifts including balloons, cakes, and wrapped presents" class="w-full h-40 object-cover">
+                    <div class="p-4 text-center">
+                        <h3 class="font-semibold text-lg">Birthday Gifts</h3>
+                        <p class="text-gray-600">50+ items</p>
+                    </div>
+                </div>
+                <div class="bg-gray-50 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition duration-300">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/cadd2034-1194-4389-ad9b-d5bd3bfb2da8.png" alt="Anniversary gifts with photo frames, champagne, and roses" class="w-full h-40 object-cover">
+                    <div class="p-4 text-center">
+                        <h3 class="font-semibold text-lg">Anniversary</h3>
+                        <p class="text-gray-600">35+ items</p>
+                    </div>
+                </div>
+                <div class="bg-gray-50 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition duration-300">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/8744e8ac-d11b-498d-b9b7-a2c5bf015dea.png" alt="Wedding gifts including decorative items, kitchenware, and jewelry boxes" class="w-full h-40 object-cover">
+                    <div class="p-4 text-center">
+                        <h3 class="font-semibold text-lg">Wedding Gifts</h3>
+                        <p class="text-gray-600">42+ items</p>
+                    </div>
+                </div>
+                <div class="bg-gray-50 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition duration-300">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/e93593d3-ca7d-4995-a250-769bb7e4857f.png" alt="Festival gifts featuring lanterns, sweets, and decorative items" class="w-full h-40 object-cover">
+                    <div class="p-4 text-center">
+                        <h3 class="font-semibold text-lg">Festival Special</h3>
+                        <p class="text-gray-600">28+ items</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products Listing -->
+    <section id="shop" class="py-12 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-6">Featured Gifts</h2>
+            <p class="text-center text-gray-600 mb-12">Handpicked collection of our premium gift items</p>
+            
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-2 mb-8">
+                <button class="filter-btn active px-4 py-2 rounded-full border border-gray-300 bg-primary text-white">All</button>
+                <button class="filter-btn px-4 py-2 rounded-full border border-gray-300">Popular</button>
+                <button class="filter-btn px-4 py-2 rounded-full border border-gray-300">New Arrivals</button>
+                <button class="filter-btn px-4 py-2 rounded-full border border-gray-300">Best Sellers</button>
+                <button class="filter-btn px-4 py-2 rounded-full border border-gray-300">Under ₹1000</button>
+                <button class="filter-btn px-4 py-2 rounded-full border border-gray-300">Premium Gifts</button>
+            </div>
+            
+            <!-- Product Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                <!-- Product 1 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden">
+                    <div class="relative">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/e5e88742-4661-4a55-9ff6-f757f5992e64.png" alt="Elegant crystal photo frame with intricate silver designs" class="w-full h-64 object-cover">
+                        <div class="sale-badge">20% OFF</div>
+                        <div class="absolute bottom-0 left-0 bg-black bg-opacity-50 text-white px-2 py-1 w-full">
+                            <span class="text-sm">Handmade</span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg mb-1">Crystal Photo Frame</h3>
+                        <div class="flex items-center mb-2">
+                            <div class="rating-stars">
+                                <span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span>
+                            </div>
+                            <span class="text-gray-600 text-sm ml-2">(42)</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="text-primary font-bold text-xl">₹1,250</span>
+                                <span class="text-gray-500 text-sm line-through ml-2">₹1,550</span>
+                            </div>
+                            <button class="bg-secondary hover:bg-primary text-primary hover:text-white p-2 rounded-full transition duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden">
+                    <div class="relative">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/740dadb9-96d8-4707-94ad-38624582e394.png" alt="Personalized wooden name plate with brass inlay work and engraved letters" class="w-full h-64 object-cover">
+                        <div class="absolute bottom-0 left-0 bg-black bg-opacity-50 text-white px-2 py-1 w-full">
+                            <span class="text-sm">Personalized</span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg mb-1">Personalized Wooden Name Plate</h3>
+                        <div class="flex items-center mb-2">
+                            <div class="rating-stars">
+                                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                            </div>
+                            <span class="text-gray-600 text-sm ml-2">(129)</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="text-primary font-bold text-xl">₹899</span>
+                            </div>
+                            <button class="bg-secondary hover:bg-primary text-primary hover:text-white p-2 rounded-full transition duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden">
+                    <div class="relative">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/ac997f1b-ac97-4047-9185-7c7ed171f3a0.png" alt="Luxury silk scarf with Indian folk art floral patterns in vibrant colors" class="w-full h-64 object-cover">
+                        <div class="sale-badge">15% OFF</div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg mb-1">Silk Printed Scarf</h3>
+                        <div class="flex items-center mb-2">
+                            <div class="rating-stars">
+                                <span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span>
+                            </div>
+                            <span class="text-gray-600 text-sm ml-2">(37)</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="text-primary font-bold text-xl">₹1,499</span>
+                                <span class="text-gray-500 text-sm line-through ml-2">₹1,750</span>
+                            </div>
+                            <button class="bg-secondary hover:bg-primary text-primary hover:text-white p-2 rounded-full transition duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden">
+                    <div class="relative">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a4866ed7-df27-466a-9313-ae65bba59bf2.png" alt="Handcrafted marble elephant figurine with detailed carvings and golden accents" class="w-full h-64 object-cover">
+                        <div class="absolute bottom-0 left-0 bg-black bg-opacity-50 text-white px-2 py-1 w-full">
+                            <span class="text-sm">Handcrafted</span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg mb-1">Marble Elephant Figurine</h3>
+                        <div class="flex items-center mb-2">
+                            <div class="rating-stars">
+                                <span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span>
+                            </div>
+                            <span class="text-gray-600 text-sm ml-2">(56)</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="text-primary font-bold text-xl">₹2,450</span>
+                            </div>
+                            <button class="bg-secondary hover:bg-primary text-primary hover:text-white p-2 rounded-full transition duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 5 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden">
+                    <div class="relative">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d1401367-b1a6-4875-b9eb-c0d7a7feb832.png" alt="Gourmet chocolate gift box with assorted flavors and gold foil wrapping" class="w-full h-64 object-cover">
+                        <div class="sale-badge">30% OFF</div>
+                        <div class="absolute bottom-0 left-0 bg-black bg-opacity-50 text-white px-2 py-1 w-full">
+                            <span class="text-sm">Premium</span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg mb-1">Gourmet Chocolate Box</h3>
+                        <div class="flex items-center mb-2">
+                            <div class="rating-stars">
+                                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                            </div>
+                            <span class="text-gray-600 text-sm ml-2">(212)</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="text-primary font-bold text-xl">₹1,099</span>
+                                <span class="text-gray-500 text-sm line-through ml-2">₹1,570</span>
+                            </div>
+                            <button class="bg-secondary hover:bg-primary text-primary hover:text-white p-2 rounded-full transition duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 6 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden">
+                    <div class="relative">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/26e1d4aa-7219-477d-8d38-82157c048a67.png" alt="Aromatherapy essential oil diffuser with LED color changing lights and ceramic finish" class="w-full h-64 object-cover">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg mb-1">Aromatherapy Diffuser</h3>
+                        <div class="flex items-center mb-2">
+                            <div class="rating-stars">
+                                <span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span>
+                            </div>
+                            <span class="text-gray-600 text-sm ml-2">(48)</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="text-primary font-bold text-xl">₹1,899</span>
+                            </div>
+                            <button class="bg-secondary hover:bg-primary text-primary hover:text-white p-2 rounded-full transition duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 7 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden">
+                    <div class="relative">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/29a1999a-da62-4a37-9042-36578ae1295d.png" alt="Handmade jute and cotton tote bag with embroidery and 'Eco Warrior' printed slogan" class="w-full h-64 object-cover">
+                        <div class="absolute bottom-0 left-0 bg-black bg-opacity-50 text-white px-2 py-1 w-full">
+                            <span class="text-sm">Eco-Friendly</span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg mb-1">Eco Tote Bag</h3>
+                        <div class="flex items-center mb-2">
+                            <div class="rating-stars">
+                                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                            </div>
+                            <span class="text-gray-600 text-sm ml-2">(89)</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="text-primary font-bold text-xl">₹599</span>
+                            </div>
+                            <button class="bg-secondary hover:bg-primary text-primary hover:text-white p-2 rounded-full transition duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 8 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden">
+                    <div class="relative">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/7b00da5e-f6ae-4548-ad6c-43ef44f1e692.png" alt="Personalized star constellation map print showing the night sky on a specific date" class="w-full h-64 object-cover">
+                        <div class="sale-badge">25% OFF</div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg mb-1">Custom Constellation Map</h3>
+                        <div class="flex items-center mb-2">
+                            <div class="rating-stars">
+                                <span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span>
+                            </div>
+                            <span class="text-gray-600 text-sm ml-2">(64)</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="text-primary font-bold text-xl">₹1,750</span>
+                                <span class="text-gray-500 text-sm line-through ml-2">₹2,330</span>
+                            </div>
+                            <button class="bg-secondary hover:bg-primary text-primary hover:text-white p-2 rounded-full transition duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- View More Button -->
+            <div class="text-center mt-12">
+                <button class="bg-white hover:bg-primary text-primary hover:text-white font-bold py-3 px-8 rounded-full border-2 border-primary transition duration-300">
+                    View All Products
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Offers -->
+    <section id="deals" class="py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-6">Special Offers</h2>
+            <div class="grid lg:grid-cols-3 gap-8">
+                <div class="flex flex-col md:flex-row lg:flex-col items-center lg:items-start bg-secondary bg-opacity-10 p-6 rounded-lg">
+                    <div class="mb-4 md:mb-0 md:mr-6 lg:mb-6 lg:mr-0 text-center lg:text-left">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/5e625588-e3fe-484e-8843-7663cfa7859b.png" alt="Sale icon with percentage signs and shopping bags" class="mx-auto lg:mx-0">
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg mb-2 text-center lg:text-left">Festival Special</h3>
+                        <p class="text-gray-600 mb-4 text-center lg:text-left">Get 15% off on all festival gifts. Use code: FEST15</p>
+                        <div class="text-center lg:text-left">
+                            <button class="bg-primary hover:bg-pink-700 text-white py-2 px-4 rounded-full text-sm">Shop Now</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row lg:flex-col items-center lg:items-start bg-secondary bg-opacity-10 p-6 rounded-lg">
+                    <div class="mb-4 md:mb-0 md:mr-6 lg:mb-6 lg:mr-0 text-center lg:text-left">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/52be77aa-3062-4523-9508-fa3bfec06cb0.png" alt="Shipping truck with heartbeat symbol representing fast delivery" class="mx-auto lg:mx-0">
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg mb-2 text-center lg:text-left">Free Shipping</h3>
+                        <p class="text-gray-600 mb-4 text-center lg:text-left">Free delivery on orders above ₹1500 all over India</p>
+                        <div class="text-center lg:text-left">
+                            <button class="bg-primary hover:bg-pink-700 text-white py-2 px-4 rounded-full text-sm">View Products</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row lg:flex-col items-center lg:items-start bg-secondary bg-opacity-10 p-6 rounded-lg">
+                    <div class="mb-4 md:mb-0 md:mr-6 lg:mb-6 lg:mr-0 text-center lg:text-left">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/da1c26ff-e297-44c0-87d6-8a0ea605d11d.png" alt="Gift wrap icon with bow and premium gift box" class="mx-auto lg:mx-0">
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg mb-2 text-center lg:text-left">Free Gift Wrapping</h3>
+                        <p class="text-gray-600 mb-4 text-center lg:text-left">Add a personal touch with our free gift wrapping service</p>
+                        <div class="text-center lg:text-left">
+                            <button class="bg-primary hover:bg-pink-700 text-white py-2 px-4 rounded-full text-sm">Learn More</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">What Our Customers Say</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition duration-300">
+                    <div class="flex items-center mb-4">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/dc809253-b98e-4e68-b1c8-aacd7a471b2b.png" alt="Customer profile picture - smiling woman named Priya Sharma" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Priya Sharma</h4>
+                            <div class="rating-stars">
+                                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"The personalized wooden name plate was beautifully crafted and exceeded my expectations. Perfect gift for my parents' anniversary!"</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition duration-300">
+                    <div class="flex items-center mb-4">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/e0dc969e-26c6-4882-8817-515fbd624633.png" alt="Customer profile picture - professional man named Rahul Kapoor" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Rahul Kapoor</h4>
+                            <div class="rating-stars">
+                                <span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"Great collection of corporate gifting options with quick delivery. The marble elephant was well received by our international clients."</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition duration-300">
+                    <div class="flex items-center mb-4">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a152cc64-5a14-452f-a565-2ea5967f0309.png" alt="Customer profile picture - young woman named Neha Patel wearing glasses" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Neha Patel</h4>
+                            <div class="rating-stars">
+                                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"I was amazed by the quality of the silk scarf I ordered as a birthday gift. The packaging was premium and delivery was faster than promised!"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="py-16 bg-primary text-white">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-4">Get Exclusive Gift Ideas</h2>
+            <p class="mb-8 text-secondary">Subscribe to our newsletter and receive ₹200 off your first order!</p>
+            <div class="flex flex-col sm:flex-row gap-2 max-w-md mx-auto">
+                <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 rounded-full focus:outline-none text-gray-800">
+                <button class="bg-white hover:bg-gray-100 text-primary font-bold px-6 py-3 rounded-full transition duration-300">Subscribe</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-12 pb-6">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/25577c96-48b8-4a30-aa66-8a85f96a5cbb.png" alt="Graceful Gifts small logo" class="h-8 mr-2">
+                        <span class="text-xl font-bold">Graceful Gifts</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">Bringing joy through thoughtfully curated gifts since 2018.</p>
+                    <div class="flex space-x-4">
+                        <a href="#">
+                            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/51e70522-e6c1-4ed6-a350-a5bf54bdff9d.png" alt="Facebook social media icon">
+                        </a>
+                        <a href="#">
+                            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/ff85fae7-447e-481d-bb19-b08835155935.png" alt="Instagram social media icon">
+                        </a>
+                        <a href="#">
+                            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/46daf899-c94f-4873-8969-c1e8b5ff7e3c.png" alt="Twitter social media icon">
+                        </a>
+                        <a href="#">
+                            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/3bd2d4e8-5fa1-466c-a20c-a712b98c8ca9.png" alt="Pinterest social media icon">
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Shop</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">All Products</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">New Arrivals</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Best Sellers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Sale Items</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Gift Cards</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Help</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Shipping & Returns</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Track Order</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Contact</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            <span>12, Gandhi Road, Mumbai, Maharashtra 400001</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                            <span>+91 98765 43210</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                            <span>hello@gracefulgifts.com</span
