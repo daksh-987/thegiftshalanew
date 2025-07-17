@@ -56,7 +56,7 @@
         }
     </style>
 </head>
-<body class="bg-white">
+<body class="bg-white/black">
     <!-- Header/Navbar -->
     <header class="bg-white shadow-sm sticky top-0 z-50">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
